@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
+
+body {
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+  background: linear-gradient(to right, #3a6186, #89253e);
+  // background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
+h1 {
+  color: white;
+  font-style:oblique;
+  font-family: "Helvetica Neue", "Book Antiqua", Palatino, sans-serif;
+  font-size: 3.5em;
+  font-weight: lighter;
+}
+
+.container {
+  text-align: center;
+}
+
+input {
+  font-style:oblique;
+  font-family: "Helvetica Neue", "Book Antiqua", Palatino, sans-serif;
+  background: #FFFFFF;
+  width: 20px;
+  height: 20px;
+  padding: 20px;
+  border-radius: 30px;
+  border: none;
+  color: #F49390;
+  cursor: pointer;
+  font-size: 1.6em;
+  transition: width 1s ease;}
+
+::placeholder {
+   color: pink;
+ }
+
+:focus {
+  outline: none;
+}
+
+
+i {
+  color: #F49390;
+  padding-top: 12px;
+  width: 60px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 0 0 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+p {
+  color: pink;
+  text-transform: uppercase;
+  font-size: .8em;
+  text-align: left;
+  margin-left: 50px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.search-container:before {
+  content: "";
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  border: 4px solid white;
+  position: absolute;
+  animation: grow 1s 3;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
