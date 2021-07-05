@@ -3,7 +3,7 @@ const search = document.getElementById('query');
 const tip = document.getElementById('tip');
 
 var i = 0;
-var message = "find more..";
+var message = “...";
 var typeSpeed = 200;
 
 
