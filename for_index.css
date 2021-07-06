@@ -83,7 +83,7 @@ p {
     transform: scale(1);
   }
   to {
-    transform: scale(2);
+    transform: scale(2.5);
     opacity: 0;
   }
 }
