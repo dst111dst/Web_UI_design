@@ -3,7 +3,7 @@ const search = document.getElementById('query');
 const tip = document.getElementById('tip');
 
 var i = 0;
-var message = "you'll enter to an error page..."
+var message = " you'll enter to an error page...";
 var typeSpeed = 200;
 
 
