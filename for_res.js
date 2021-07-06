@@ -1,53 +1,19 @@
-/**
- * Utilities static function
- */
 class Utils {
-    /**
-     * Get random number
-     * @param {number} min - min number
-     * @param {number} max - max number
-     */
     static getRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
-    /**
-     * Get rgb color if not params return random
-     * @param {number} r - red
-     * @param {number} g - green
-     * @param {number} b - blue
-     */
     static getRGBColor(r, g, b) {
         const rr = r || this.getRandomNumber(0, 255);
         const rg = g || this.getRandomNumber(0, 255);
         const rb = b || this.getRandomNumber(0, 255);
         return 'rgb(' + rr + ', ' + rg + ', ' + rb + ')';
     }
-    /**
-     * Get hsl color if not params return random
-     * @param {number} hue - from 0 to 360
-     * @param {number} saturation - from 0 to 100
-     * @param {number} lightness - from 0 to 100
-     */
     static getHSLColor(hue, saturation, lightness) {
         const rHue = hue || this.getRandomNumber(0, 360);
         const rSaturation = saturation || this.getRandomNumber(0, 100);
         const rLightness = lightness || this.getRandomNumber(0, 100);
         return 'hsl(' + rHue + ', ' + rSaturation + '%, ' + rLightness + '%)';
     }
-    /**
-     * Get gradient color
-     * @param {ctx} ctx - context for canvas
-     * @param {string} type - linear or radial
-     * @param {number} r - red from 0 to 255
-     * @param {number} g - green from 0 to 255
-     * @param {number} b - blue from 0 to 255
-     * @param {number} a - alpha from 0 to 1
-     * @param {number} x - coordinate x
-     * @param {number} y - coordinate y
-     * @param {number} r - radius
-     * @param {number} x - end coordinate x
-     * @param {number} y - end coordinate y
-     */
     static getGradientColor(ctx, type, cr, cg, cb, ca, x, y, r, ex, ey) {
         let col, g;
         switch (type) {
@@ -72,11 +38,6 @@ class Utils {
                 break;}
 
     }
-    /**
-     * Get multiple array
-     * @param {number} yLength - length
-     * @param {number} xLength - length
-     */
     static getMultipleArray(yLength, xLength) {
         const multArr = new Array(yLength);
         for (let y = 0; y < yLength; y++) {
@@ -89,27 +50,11 @@ class Utils {
     }}
 
 
-/**
- * Vector
- * Referenced / O'Reilly Programming HTML5 Canvas
- */
 class Vector2d {
-    /*
-    * @constructor
-    * @param {number} x - vector x
-    * @param {number} y - vector y
-    */
     constructor(x, y) {
         this.x = x;
         this.y = y;
     }
-
-    /*
-    * Add vector or return new vector
-    * @param {constructor} v - vector or null
-    * @param {number} x - vector x
-    * @param {number} y - vector y
-    */
     add(v, x, y) {
         if (v instanceof Vector2d) {
             return new Vector2d(this.x + v.x, this.y + v.y);
@@ -118,13 +63,6 @@ class Vector2d {
             this.y += y;
         }
     }
-
-    /*
-    * Subtract vector or return new vector
-    * @param {constructor} v - vector or null
-    * @param {number} x - vector x
-    * @param {number} y - vector y
-    */
     sub(v, x, y) {
         if (v instanceof Vector2d) {
             return new Vector2d(this.x - v.x, this.y - v.y);
@@ -133,12 +71,6 @@ class Vector2d {
             this.y -= y;
         }
     }
-
-    /*
-    * Multiple vector or return new vector
-    * @param {constructor} v - vector or null
-    * @param {number} num
-    */
     mult(v, num) {
         if (v instanceof Vector2d) {
             return new Vector2d(this.x * v.x, this.y * v.x);
@@ -147,28 +79,15 @@ class Vector2d {
             this.y *= num;
         }
     }
-
-    /*
-    * Change vector from radian
-    * @param {number} radian
-    */
     fromAngle(radian) {
         this.x = Math.cos(radian);
         this.y = Math.sin(radian);
     }
-
-    /*
-    * Invert vector
-    */
     negate() {
         this.x = -this.x;
         this.y = -this.y;
     }
 
-    /*
-    * Change vector from radian
-    * @param {number} radian
-    */
     rotate(radian) {
         const x = this.x;
         const y = this.y;
@@ -177,24 +96,14 @@ class Vector2d {
         this.x = x * cosVal - y * sinVal;
         this.y = x * sinVal + y * cosVal;
     }
-
-    /*
-    * Return vector length
-    */
     length() {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
-
-    /*
-    * Return vector length squared
-    */
     lengthSquared() {
         return this.x * this.x + this.y * this.y;
     }
 
-    /*
-    * Return making vector same direction and noamlize
-    */
+  
     normalize() {
         const len = Math.sqrt(this.x * this.x + this.y * this.y);
         if (len) {
@@ -204,10 +113,7 @@ class Vector2d {
         return len;
     }
 
-    /*
-    * Return dot product of vectors
-    * @param {constructor} v - vector
-    */
+   
     dotProduct(v) {
         return this.x * v.x + this.y * v.y;
     }
@@ -216,9 +122,7 @@ class Vector2d {
         return this.sub(v);
     }
 
-    /*
-    * Return vertical vector
-    */
+   
     perpendicular() {
         const v = new Vector2d();
         v.x = this.y;
@@ -234,30 +138,17 @@ class Vector2d {
         return p.normalize();
     }
 
-    /*
-    * Display vector by string
-    */
+    
     toString() {
         return '(' + this.x.toFixed(3) + ',' + this.y.toFixed(3) + ')';
     }}
 
 
-/**
- * Collide
- * Referenced / O'Reilly Programming HTML5 Canvas
- */
+
 class CollideWithCircle {
-    /*
-    * @constructor
-    * @param {array} array - target array
-    */
     constructor(array) {
         this.array = array;
     }
-
-    /*
-    * Check for collide
-    */
     collide() {
         const v = new Vector2d(0, 0);
         let dist, obj1, obj2;
@@ -279,12 +170,6 @@ class CollideWithCircle {
             }
         }
     }
-
-    /*
-    * Change vector
-    * @param {obj} obj1 - target object
-    * @param {obj} obj2 - target object
-    */
     bounce(obj1, obj2) {
         const colnAngle = Math.atan2(obj1.y - obj2.y, obj1.x - obj2.x);
         const length1 = obj1.v.length();
@@ -302,10 +187,7 @@ class CollideWithCircle {
     }}
 
 
-/**
- * Stop watch
- * Referenced / O'Reilly Programming HTML5 Canvas
- */
+
 class Stopwatch {
     /*
     * @constructor
@@ -384,35 +266,34 @@ class AnimationTimer {
     }
 
     setTimeWarpFunction(timeWarp, option)
-    {return this.makeLinear()}
-    //     if (timeWarp === undefined || timeWarp === 'Random') {
-    //         const arr = [
-    //             'EaseIn',
-    //             'EaseOut',
-    //             'EaseInOut',
-    //             'Elastic',
-    //             'Bounce',
-    //             'Linear'];
-    //
-    //         timeWarp = arr[Utils.getRandomNumber(0, arr.length - 1)];
-    //     }
-    //     switch (timeWarp) {
-    //         case 'EaseIn':
-    //             return this.makeEaseIn(option);
-    //         case 'EaseOut':
-    //             return this.makeEaseOut(option);
-    //         case 'EaseInOut':
-    //             return this.makeEaseInOut();
-    //         case 'Elastic':
-    //             return this.makeElastic(option);
-    //         case 'Bounce':
-    //             return this.makeBounce(option);
-    //         case 'Linear':
-    //             return this.makeLinear();
-    //         default:
-    //             return this.makeLinear();}
-    //
-    // }
+       {
+            const arr = [
+                'EaseIn',
+                'EaseOut',
+                'EaseInOut',
+                'Elastic',
+                'Bounce',
+                'Linear'];
+    
+            timeWarp = arr[Utils.getRandomNumber(0, arr.length - 1)];
+        }
+        switch (timeWarp) {
+            case 'EaseIn':
+                return this.makeEaseIn(option);
+            case 'EaseOut':
+                return this.makeEaseOut(option);
+            case 'EaseInOut':
+                return this.makeEaseInOut();
+            case 'Elastic':
+                return this.makeElastic(option);
+            case 'Bounce':
+                return this.makeBounce(option);
+            case 'Linear':
+                return this.makeLinear();
+            default:
+                return this.makeLinear();}
+    
+    }
 
     start() {
         this.stopwatch.start();
@@ -596,9 +477,6 @@ class Canvas {
     }}
 
 
-/**
- * Shape class.
- */
 class Shape {
     constructor(ctx, ww, wh, index) {
         this.ctx = ctx;
