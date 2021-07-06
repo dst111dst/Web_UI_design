@@ -274,7 +274,7 @@ class AnimationTimer {
                 'Bounce',
                 'Linear'];
             timeWarp = arr[Utils.getRandomNumber(0, arr.length - 1)];
-        }
+       }
         switch (timeWarp) {
             case 'EaseIn':
                 return this.makeEaseIn(option);
@@ -290,8 +290,6 @@ class AnimationTimer {
                 return this.makeLinear();
             default:
                 return this.makeLinear();}
-    
-    }
 
     start() {
         this.stopwatch.start();
