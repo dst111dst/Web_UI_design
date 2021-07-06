@@ -266,15 +266,13 @@ class AnimationTimer {
     }
 
     setTimeWarpFunction(timeWarp, option)
-       {
-            const arr = [
+       {    const arr = [
                 'EaseIn',
                 'EaseOut',
                 'EaseInOut',
                 'Elastic',
                 'Bounce',
                 'Linear'];
-    
             timeWarp = arr[Utils.getRandomNumber(0, arr.length - 1)];
         }
         switch (timeWarp) {
