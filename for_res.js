@@ -50,11 +50,13 @@ class Utils {
     }}
 
 
+
 class Vector2d {
     constructor(x, y) {
         this.x = x;
         this.y = y;
     }
+
     add(v, x, y) {
         if (v instanceof Vector2d) {
             return new Vector2d(this.x + v.x, this.y + v.y);
@@ -63,6 +65,7 @@ class Vector2d {
             this.y += y;
         }
     }
+
     sub(v, x, y) {
         if (v instanceof Vector2d) {
             return new Vector2d(this.x - v.x, this.y - v.y);
@@ -83,6 +86,7 @@ class Vector2d {
         this.x = Math.cos(radian);
         this.y = Math.sin(radian);
     }
+
     negate() {
         this.x = -this.x;
         this.y = -this.y;
@@ -96,9 +100,11 @@ class Vector2d {
         this.x = x * cosVal - y * sinVal;
         this.y = x * sinVal + y * cosVal;
     }
+
     length() {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
+
     lengthSquared() {
         return this.x * this.x + this.y * this.y;
     }
@@ -113,7 +119,6 @@ class Vector2d {
         return len;
     }
 
-   
     dotProduct(v) {
         return this.x * v.x + this.y * v.y;
     }
@@ -121,8 +126,6 @@ class Vector2d {
     edge(v) {
         return this.sub(v);
     }
-
-   
     perpendicular() {
         const v = new Vector2d();
         v.x = this.y;
@@ -138,17 +141,19 @@ class Vector2d {
         return p.normalize();
     }
 
-    
+    /*
+    * Display vector by string
+    */
     toString() {
         return '(' + this.x.toFixed(3) + ',' + this.y.toFixed(3) + ')';
     }}
 
-
-
 class CollideWithCircle {
+
     constructor(array) {
         this.array = array;
     }
+
     collide() {
         const v = new Vector2d(0, 0);
         let dist, obj1, obj2;
@@ -187,11 +192,8 @@ class CollideWithCircle {
     }}
 
 
-
 class Stopwatch {
-    /*
-    * @constructor
-    */
+
     constructor() {
         this.startTime = null;
         this.elapsedTime = null;
@@ -201,9 +203,6 @@ class Stopwatch {
         this.lastTime = null;
     }
 
-    /*
-    * Calculate times
-    */
     calcTime() {
         const time = Date.now();
         this.elapsedTimeForCalc = time - this.lastTime;
@@ -211,9 +210,6 @@ class Stopwatch {
         this.lastTime = time;
     }
 
-    /*
-    * Start stop watch
-    */
     start() {
         this.startTime = Date.now();
         this.elapsedTime = null;
@@ -228,9 +224,6 @@ class Stopwatch {
         this.running = false;
     }
 
-    /*
-    * Get elapsed time
-    */
     getElapsedTime() {
         if (this.running) {
             return Date.now() - this.startTime;
@@ -239,57 +232,25 @@ class Stopwatch {
         }
     }
 
-    /*
-    * Return running
-    */
     isRunning() {
         return this.running;
     }
 
-    /*
-    * Reset elapsed time
-    */
+
     reset() {
         this.elapsedTime = null;
     }}
 
 
-/**
- * Animation timer
- * Referenced / O'Reilly Programming HTML5 Canvas
- */
 class AnimationTimer {
-    constructor(duration, timeWarp, option) {
+    constructor(duration) {
         if (duration !== undefined) this.duration = duration;
-        this.timeWarp = this.setTimeWarpFunction(timeWarp, option);
+        this.timeWarp = this.setTimeWarpFunction();
         this.stopwatch = new Stopwatch();
     }
 
-    setTimeWarpFunction(timeWarp, option)
-       {    const arr = [
-                'EaseIn',
-                'EaseOut',
-                'EaseInOut',
-                'Elastic',
-                'Bounce',
-                'Linear'];
-            timeWarp = arr[Utils.getRandomNumber(0, arr.length - 1)];
-       }
-        switch (timeWarp) {
-            case 'EaseIn':
-                return this.makeEaseIn(option);
-            case 'EaseOut':
-                return this.makeEaseOut(option);
-            case 'EaseInOut':
-                return this.makeEaseInOut();
-            case 'Elastic':
-                return this.makeElastic(option);
-            case 'Bounce':
-                return this.makeBounce(option);
-            case 'Linear':
-                return this.makeLinear();
-            default:
-                return this.makeLinear();}
+    setTimeWarpFunction()
+    {return this.makeEaseInOut();}
 
     start() {
         this.stopwatch.start();
@@ -357,10 +318,6 @@ class AnimationTimer {
         };
     }}
 
-
-/**
- * Angle
- */
 class Angle {
     /*
     * @constructor
@@ -371,9 +328,6 @@ class Angle {
         this.radian = this.a * Math.PI / 180;
     }
 
-    /*
-    * Return angle
-    */
     getAngle() {
         return this.a;
     }
@@ -397,10 +351,6 @@ class Angle {
  * Canvas
  */
 class Canvas {
-    /*
-    * @constructor
-    * @param {bool} bool - true or false
-    */
     constructor(bool) {
         // create canvas.
         this.canvas = document.createElement("canvas");
@@ -473,6 +423,9 @@ class Canvas {
     }}
 
 
+/**
+ * Shape class.
+ */
 class Shape {
     constructor(ctx, ww, wh, index) {
         this.ctx = ctx;
@@ -551,9 +504,7 @@ class Shape {
     }}
 
 
-/**
- * run
- */
+
 (() => {
     'use strict';
     window.addEventListener('load', () => {
@@ -561,13 +512,9 @@ class Shape {
         const canvas = new Canvas(true);
         canvas.init();
         canvas.render();
-
-        // resize
         window.addEventListener("resize", () => {
             canvas.resize();
         }, false);
-
-        // mouse event
         canvas.canvas.addEventListener('mousemove', e => {
             canvas.mouseX = e.clientX;
             canvas.mouseY = e.clientY;
